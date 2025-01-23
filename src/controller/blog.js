@@ -23,13 +23,13 @@ async function createBlog(req, res) {
         .status(400)
         .json({ error: "Title and body are required to create a blog" });
     }
+    const createdBlog = await createBlogService({ title, body });
+    res.send(createdBlog);
   } catch (error) {
     return res
       .status(500)
       .json({ error: "An error occurred while creating the blog" });
   }
-  const createdBlog = await createBlogService({ title, body });
-  res.send(createdBlog);
 }
 
 const updateBlog = async (req, res) => {
